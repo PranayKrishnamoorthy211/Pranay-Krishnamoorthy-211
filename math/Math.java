@@ -17,7 +17,7 @@ class Math {
     for(int i=0; i<=100; i+=3){
       System.out.println(i);
     }
-    for(int 1 = 1000; i>=0; i = i-10){
+    for(int i = 1000; i>=0; i = i-10){
       System.out.print(i+"_");
     }
 
