@@ -10,8 +10,16 @@ class Math {
 
     //We will be using System.out.println and System.out.print throughout the year. Try using both below to see what the difference is!
 
-
-
+    for(int i= 1; i<=100; i+=2){
+      System.out.println(i);
+  
+    }
+    for(int i=0; i<=100; i+=3){
+      System.out.println(i);
+    }
+    for(int 1 = 1000; i>=0; i = i-10){
+      System.out.print(i+"_");
+    }
 
 
 
