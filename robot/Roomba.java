@@ -111,9 +111,9 @@ public class Roomba implements Directions {
 			roomba.pickBeeper();
 			totalBeepers ++;
 		}
+		roomba.move();
+		roomba.move();
 
-		roomba.move();
-		roomba.move();
 
 
 		return totalBeepers;
