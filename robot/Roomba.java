@@ -28,20 +28,95 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
+		World.setSize(20, 20);
+		World.setDelay(1);
 
+		Robot roomba = new Robot(7, 7, East, 0);
+		int totalBeepers = 0;
 
-		/** This section will have all the logic that takes the Robot to every location
-		 * and cleans up all piles of beepers. Think about ways you can break this
-		 * large, complex task into smaller, easier to solve problems.
-		 */
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
 
-		// the line below causes a null pointer exception
-		// what is that and why are we getting it?
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while(roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+			totalBeepers ++;
+		}
+
+		roomba.move();
 		roomba.move();
 
 
-		int totalBeepers = 0; // Need to move this somewhere else.
-        // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
+	
 }
