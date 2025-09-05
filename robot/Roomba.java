@@ -112,7 +112,7 @@ public class Roomba implements Directions {
 			totalBeepers ++;
 		}
 		roomba.move();
-		roomba.move();
+		roomba.move();     
 
 
 
