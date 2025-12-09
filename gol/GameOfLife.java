@@ -21,3 +21,13 @@ public class GameOfLife implements Board {
             step();
         }
     }
+
+     public void step() {
+        print();
+        int rows = board.length;
+        int cols = board.length;
+        int[][] nextBoard = new int[rows][cols];
+
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                int neighbors = countNeighbors(x, y);
