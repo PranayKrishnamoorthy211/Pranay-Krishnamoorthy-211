@@ -16,3 +16,8 @@ public class GameOfLife implements Board {
         }
     }
 
+    public void run(int turns) {
+        while (turns-- > 0) {
+            step();
+        }
+    }
