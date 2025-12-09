@@ -50,3 +50,17 @@ public class GameOfLife implements Board {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if (i == 0 && j == 0) continue;
+
+                 int neighborX = x + i;
+                int neighborY = y + j;
+
+                if (neighborX < 0) neighborX += rows;
+                if (neighborX >= rows) neighborX -= rows;
+                if (neighborY < 0) neighborY += cols;
+                if (neighborY >= cols) neighborY -= cols;
+
+                count += board[neighborX][neighborY];
+            }
+        }
+        return count;
+    }
