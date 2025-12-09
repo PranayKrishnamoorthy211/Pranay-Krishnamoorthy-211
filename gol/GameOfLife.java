@@ -81,3 +81,19 @@ public class GameOfLife implements Board {
     public int[][] get() {
         return board;
     }
+    
+    public void print() {
+        System.out.print("\n ");
+        for (int y = 0; y < board.length; y++) {
+            System.out.print(y % 10 + " ");
+        }
+
+        for (int x = 0; x < board.length; x++) {
+            System.out.print("\n" + x % 10);
+            for (int y = 0; y < board[x].length; y++) {
+                System.out.print(board[x][y] == 1 ? "⬛" : "⬜");
+            }
+        }
+        System.out.println();
+    }
+}
