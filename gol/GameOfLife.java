@@ -64,3 +64,20 @@ public class GameOfLife implements Board {
         }
         return count;
     }
+
+    public int get(int x, int y) {
+        int xLimit = board.length;
+        int yLimit = board.length;
+        
+        int wrappedX = x % xLimit;
+        if (wrappedX < 0) wrappedX += xLimit;
+
+        int wrappedY = y % yLimit;
+        if (wrappedY < 0) wrappedY += yLimit;
+        
+        return board[wrappedX][wrappedY];
+    }
+
+    public int[][] get() {
+        return board;
+    }
