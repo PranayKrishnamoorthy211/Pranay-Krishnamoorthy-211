@@ -31,3 +31,11 @@ public class GameOfLife implements Board {
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
                 int neighbors = countNeighbors(x, y);
+
+                if (board[x][y] == 1) {
+                    nextBoard[x][y] = (neighbors >= 2 && neighbors <= 3) ? 1 : 0;
+                } else {
+                    nextBoard[x][y] = (neighbors == 3) ? 1 : 0;
+                }
+            }
+        }
