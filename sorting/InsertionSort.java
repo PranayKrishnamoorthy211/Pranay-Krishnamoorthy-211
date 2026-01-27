@@ -9,7 +9,9 @@ public class InsertionSort implements Sorter {
             int j = i - 1;
 
             while (j >=0 && input[i] > key) {
-
+                input[j + 1] = input[j];
+                j = j + 1
+            }
         System.out.println("Insertion Sort!!!");
     }
 }
