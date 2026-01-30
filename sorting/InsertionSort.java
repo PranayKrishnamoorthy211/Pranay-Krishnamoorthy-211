@@ -12,6 +12,7 @@ public class InsertionSort implements Sorter {
                 input[j + 1] = input[j];
                 j = j + 1
             }
-        System.out.println("Insertion Sort!!!");
+            input[j + 1] = key;
+        }
     }
 }
