@@ -39,5 +39,5 @@ public class IrregularPolygon {
             System.out.println("Exception: No graphics support available.");
         }
     }
-
+             
 }
