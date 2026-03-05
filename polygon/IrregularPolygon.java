@@ -64,3 +64,42 @@ next = myPolygon.get(0);
 } else {
 next = myPolygon.get(i + 1);
 }
+
+area += (current.x * next.y) - (current.y * next.x);
+}
+
+area = Math.abs(area) / 2.0;
+
+return area;
+}
+
+// Draw the polygon
+public void draw()
+{
+try {
+if (myPolygon.size() < 2) {
+return;
+}
+
+DrawingTool myDrawingTool = new DrawingTool(new SketchPad(500, 500));
+
+// Move to first point
+Point2D.Double first = myPolygon.get(0);
+myDrawingTool.up();
+myDrawingTool.move(first.x, first.y);
+myDrawingTool.down();
+
+// Draw lines to remaining points
+for (int i = 1; i < myPolygon.size(); i++) {
+Point2D.Double point = myPolygon.get(i);
+myDrawingTool.move(point.x, point.y);
+}
+
+// Close polygon by returning to first point
+myDrawingTool.move(first.x, first.y);
+
+} catch (java.awt.HeadlessException e) {
+System.out.println("Exception: No graphics support available.");
+}
+}
+}
