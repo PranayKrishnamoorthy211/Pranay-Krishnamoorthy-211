@@ -1,98 +1,77 @@
 package polygon;
 
-import java.awt.geom.*; // for Point2D.Double
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.geom.*;
 import java.util.ArrayList;
-import gpdraw.*; // for DrawingTool
+import gpdraw.*;
 
 public class IrregularPolygon {
+private ArrayList<Point2D.Double> pointsList;
 
-private ArrayList<Point2D.Double> myPolygon = new ArrayList<Point2D.Double>();
-
-// constructor
-public IrregularPolygon() {}
-
-// Add a point to the polygon
-public void add(Point2D.Double aPoint) {
-myPolygon.add(aPoint);
+public IrregularPolygon() {
+pointsList = new ArrayList<Point2D.Double>();
 }
 
-// Calculate the perimeter of the polygon
+public void add(Point2D.Double newPoint) {
+pointsList.add(newPoint);
+}
+
 public double perimeter() {
-double perimeter = 0.0;
-
-if (myPolygon.size() < 2) {
+if (pointsList.size() < 2) {
 return 0.0;
 }
 
-for (int i = 0; i < myPolygon.size(); i++) {
+double totalPerimeter = 0.0;
 
-Point2D.Double current = myPolygon.get(i);
-Point2D.Double next;
-
-if (i == myPolygon.size() - 1) {
-next = myPolygon.get(0);
-} else {
-next = myPolygon.get(i + 1);
+for (int i = 0; i < pointsList.size(); i++) {
+Point2D.Double currentPoint = pointsList.get(i);
+Point2D.Double nextPoint = pointsList.get((i + 1) % pointsList.size());
+totalPerimeter += currentPoint.distance(nextPoint);
 }
 
-perimeter += current.distance(next);
+return totalPerimeter;
 }
 
-return perimeter;
-}
-
-// Calculate the area using the Shoelace Formula
 public double area() {
-double area = 0.0;
-
-if (myPolygon.size() < 3) {
+if (pointsList.size() < 3) {
 return 0.0;
 }
 
-for (int i = 0; i < myPolygon.size(); i++) {
+double calculationSum = 0.0;
 
-Point2D.Double current = myPolygon.get(i);
-Point2D.Double next;
-
-if (i == myPolygon.size() - 1) {
-next = myPolygon.get(0);
-} else {
-next = myPolygon.get(i + 1);
+for (int i = 0; i < pointsList.size(); i++) {
+Point2D.Double pointA = pointsList.get(i);
+Point2D.Double pointB = pointsList.get((i + 1) % pointsList.size());
+calculationSum = calculationSum + (pointA.getX() * pointB.getY() - pointA.getY() * pointB.getX());
 }
 
-area += (current.getX() * next.getY()) -
-(current.getY() * next.getX());
+return Math.abs(calculationSum / 2.0);
 }
 
-area = Math.abs(area) / 2.0;
-
-return area;
-}
-
-// Draw the polygon
-public void draw() {
-try {
-
-if (myPolygon.size() < 2) {
+public void draw()
+{
+if (pointsList.size() < 2) {
 return;
 }
 
-DrawingTool myDrawingTool = new DrawingTool(new SketchPad(500, 500));
+try {
+DrawingTool pen = new DrawingTool(new SketchPad(500, 500));
 
-Point2D.Double first = myPolygon.get(0);
+Point2D.Double startPoint = pointsList.get(0);
 
-myDrawingTool.up();
-myDrawingTool.move(first.getX(), first.getY());
-myDrawingTool.down();
+pen.up();
+pen.move(startPoint.getX(), startPoint.getY());
+pen.down();
 
-for (int i = 1; i < myPolygon.size(); i++) {
-Point2D.Double point = myPolygon.get(i);
-myDrawingTool.move(point.getX(), point.getY());
+for (int i = 1; i < pointsList.size(); i++) {
+Point2D.Double nextDrawPoint = pointsList.get(i);
+pen.move(nextDrawPoint.getX(), nextDrawPoint.getY());
 }
 
-myDrawingTool.move(first.getX(), first.getY());
+pen.move(startPoint.getX(), startPoint.getY());
 
-} catch (java.awt.HeadlessException e) {
+} catch (java.awt.HeadlessException error) {
 System.out.println("Exception: No graphics support available.");
 }
 }
