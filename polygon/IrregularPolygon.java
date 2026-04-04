@@ -24,21 +24,18 @@ public class IrregularPolygon {
     }
 
     public void addSmileyFace() {
-        // Right Eye
         ArrayList<Point2D.Double> rEye = new ArrayList<Point2D.Double>();
         rEye.add(new Point2D.Double(20, 40));
         rEye.add(new Point2D.Double(30, 40));
         rEye.add(new Point2D.Double(25, 50));
         shapes.add(rEye);
 
-        // Left Eye
         ArrayList<Point2D.Double> lEye = new ArrayList<Point2D.Double>();
         lEye.add(new Point2D.Double(-20, 40));
         lEye.add(new Point2D.Double(-30, 40));
         lEye.add(new Point2D.Double(-25, 50));
         shapes.add(lEye);
 
-        // Mouth
         ArrayList<Point2D.Double> mouth = new ArrayList<Point2D.Double>();
         mouth.add(new Point2D.Double(-30, 10));
         mouth.add(new Point2D.Double(0, -10));
@@ -61,7 +58,6 @@ public class IrregularPolygon {
                     pen.move(pt.getX(), pt.getY());
                 }
 
-                // Close the polygon and the eyes
                 pen.move(first.getX(), first.getY());
             }
         }
